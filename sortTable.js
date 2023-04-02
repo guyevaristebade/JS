@@ -1,3 +1,7 @@
+/**
+* pour cet exercice j'ai utilisé deux méthodes pour trier mes tableaux 
+*/
+
 let data = [
     {nom : "BADE", age: 20},
     {nom : "shaloba", age: 30},
