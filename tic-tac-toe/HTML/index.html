@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/script.js" defer></script>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>TIC-TAC-TOE</title>
+</head>
+<body>
+    <div class="header">
+        <h1>TIC-TAC-TOE in THE TRAIN</h1>
+    </div>
+
+    <div class="container" id="game-plateau">
+        <div id="c1" class="pion"></div>
+        <div id="c2" class="pion"></div>
+        <div id="c3" class="pion"></div>
+        <div id="c4" class="pion"></div>
+        <div id="c5" class="pion"></div>
+        <div id="c6" class="pion"></div>
+        <div id="c7" class="pion"></div>
+        <div id="c8" class="pion"></div>
+        <div id="c9" class="pion"></div>
+    </div>
+    <div class="score">
+        <h1>Au tour du joueur : <span id="currentPlayer"></span></h1>
+        <h1>Scrore Player 1 : <span id="player1">0</span></h1>
+        <h1>Scrore Player 2 : <span id="player2">0</span></h1>
+        <h1>Match null : <span id="null">0</span></h1>
+    </div>
+
+    <!-- <div class="toogle-div">
+        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+    </div> -->
+    
+    <div class="popup" id="victory">
+        <div class="popup-content">
+            <h1 class="popup-message">Victoire du joueur (X)</h1>
+            <div class="popup_btn">
+                <div id="continue">Continue Game</div>
+                <div id="restart">Restart Game</div>
+            </div>
+        </div>
+    </div>
+
+    
+<!-- 
+    <div class="container">
+        <div class="inputer">
+            <input type="text" id="myinput">
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Nom <i class="bi bi-filter " id="byname"></i></th>
+                <th scope="col">Age <i class="bi bi-filter" id="byage"></i></th>
+            </tr>
+            </thead>
+            <tbody id="corps">
+            </tbody>
+        </table>
+    </div> -->
+</body>
+</html>

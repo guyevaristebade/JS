@@ -1,0 +1,263 @@
+*,::before,::after
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+body.light-mode{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(250, 248, 248);
+    color: black;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.header{
+    margin-bottom: 1rem;
+}
+
+.header h1{
+    text-align: center;
+}
+
+#game-plateau{
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    height: 400px;
+    width: 400px;
+    padding: 2.5rem;
+    box-shadow: 0 0 2rem lightgray;
+    margin-bottom: 1rem;
+    border-top-right-radius: 5rem;
+    border-bottom-left-radius: 5rem;
+    cursor: pointer;
+    border-radius: 50px;
+    background: black;
+}
+
+.pion{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    border: solid 1px wheat;
+    color: #fff;
+}
+
+.score{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.popup{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom :0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items : center;
+    background-color: rgba(218, 212, 212, 0.8);
+    display: none;
+}
+
+.popup.show{
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom :0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items : center;
+    background-color: rgba(83, 81, 81, 0.8);
+}
+
+.popup.light-mode{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom :0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items : center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.popup-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height:40%;
+    width: 60%;
+    background-color: #000000;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.popup-message{
+    margin-bottom: 2rem;
+}
+
+
+.popup_btn{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+#continue{
+    background-color: #bada55;
+    color: #000;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+#restart{
+    background-color: #bada55;
+    color: #000;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/*toogle*/
+.toogle-div{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+}
+
+input[type=checkbox]{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: fixed;
+}
+  
+  label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 200px;
+    height: 100px;
+    background: grey;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+  }
+  
+  label:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+  }
+  
+  input:checked + label {
+    background: #bada55;
+  }
+  
+  input:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+  }
+  
+  label:active:after {
+    width: 130px;
+  }
+  
+
+/* responsive */
+
+/* Styling pour les écrans de petite taille */
+@media only screen and (max-width: 600px) {
+    *{
+        font-size: medium;
+    }
+
+    label {
+        cursor: pointer;
+        text-indent: -9999px;
+        width: 100px;
+        height: 60px;
+        background: grey;
+        display: block;
+        border-radius: 100px;
+        position: relative;
+    }
+
+    label:after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 40px;
+        height: 50px;
+        background: #fff;
+        border-radius: 90px;
+        transition: 0.3s;
+    }
+}
+
+/* Styling pour les écrans de taille moyenne */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+/* Ajouter des règles de style CSS pour les écrans de taille moyenne ici */
+}
+
+/* Styling pour les écrans de grande taille */
+@media only screen and (min-width: 1025px) {
+/* Ajouter des règles de style CSS pour les écrans de grande taille ici */
+}
+
+
+tr{
+    text-align: center;
+    border: 1px solid #000;
+}
+
+i{
+    cursor:  pointer;
+}
+
+.inputer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
