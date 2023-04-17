@@ -34,8 +34,7 @@ let WINNINGCOMBI = [
 ]
 
 
-
-function showPopup(e,message){
+function showAndClosePopup(e,message){
     popup.classList.add('show')
     popup_msg.textContent = message
 
@@ -74,12 +73,12 @@ function checkNull(){
     })
 }
 
-/**
- * on test tous les tableaux de la combinaison gagnante 
- * si au moins un éléments est vrai 
- * on vérifie ensuite chaques éléments du tableau renvoyé précedement 
- * si tous ses élémens vérifie le test alors le joueur gagne 
-*/
+function botEasy(){
+    let randNumber = Math.floor(Math.random() * pionArray.length)
+    pionArray[randNumber].textContent = "X"
+}
+
+
 function checkWins(){
     return WINNINGCOMBI.some((combi)=>{
             return combi.every((i) =>{
@@ -115,23 +114,18 @@ function chekWinsOrDraw(e){
         if(state.cp === "O"){
             state.score_j2 += 1
             p2.textContent = state.score_j2
-            // alert("Player X Wins")
-            showPopup(e,"Player "+ playerOne.textContent + " wins")
-            // restartGame()
+            showAndClosePopup(e,"Player "+ playerTwo.textContent + " wins")
         }
         else if (state.cp === "X"){
             state.score_j1 += 1
             p1.textContent = state.score_j1
-            // alert("Player O Wins")
-            showPopup(e,"Player "+ playerTwo.textContent + " wins")
-            // restartGame()
+            showAndClosePopup(e,"Player "+ playerOne.textContent + " wins")
         }
     }
     else if(checkNull()){
         state.score_nul += 1
         nul.textContent = state.score_nul
-        showPopup(e, "It's Draw")
-        // restartGame()
+        showAndClosePopup(e, "It's Draw")
         console.log(state , " debug")
     }
 
