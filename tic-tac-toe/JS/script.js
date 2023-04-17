@@ -1,138 +1,164 @@
-function main() {
-    /**
-     * déclaration des variables
-    */
 
-    /**
-     * il manque le resetPlateau 
-     * stockage et récupération des scores dans le locl storage 
-     * faire les bot sur 3 niveaux
-    */
+/**
+ * déclaration des variables
+*/
+const pionArray = document.querySelectorAll('.pion')
+let currentPlayer = document.getElementById('currentPlayer')
+let p1 = document.getElementById('player1')
+let p2 = document.getElementById('player2')
+let nul = document.getElementById('null')
+let popup = document.querySelector('.popup')
+const restart_btn =  document.getElementById('restart')
+const continue_btn = document.getElementById('continue')
+let popup_msg = document.querySelector('.popup-message')
+const playerOne = document.getElementById("one")
+const playerTwo = document.getElementById("two")
 
-    let pionArray = document.querySelectorAll('.pion')
-    let currentPlayer = document.getElementById('currentPlayer')
-    let p1 = document.getElementById('player1')
-    let p2 = document.getElementById('player2')
-    let nul = document.getElementById('null')
+let state = {
+    cp : "O",
+    color : 'blue',
+    score_j1 : 0,
+    score_j2 : 0,
+    score_nul : 0
+}
 
-    let state = {
-        cp : "O",
-        color : 'blue',
-        score_j1 : 0,
-        score_j2 : 0,
-        score_nul : 0
-    }
+currentPlayer.textContent = state.cp
+const pion_croix = 'X' 
+currentPlayer.style.color = state.color
 
+let WINNINGCOMBI = [
+    [0,1,2],[3,4,5],
+    [6,7,8],[0,3,6],
+    [1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+]
+
+
+
+function showPopup(e,message){
+    popup.classList.add('show')
+    popup_msg.textContent = message
+
+    continue_btn.addEventListener('click',(ev)=>{
+        ResetPlateau()
+        popup.classList.remove('show')
+    })
+
+    restart_btn.addEventListener('click',(ev)=>{
+        restartGame()
+        popup.classList.remove('show')
+    })
+}
+
+
+function playerCircleStyle(e){
+    state.cp = "O" 
+    state.color = "red"
+    e.target.style.color = state.color
     currentPlayer.textContent = state.cp
-    const pion_croix = 'X' 
-    // currentPlayer.style.color = state.color
+    currentPlayer.style.color = "blue"
+}
 
-    let WINNINGCOMBI = [
-        [0,1,2],[3,4,5],
-        [6,7,8],[0,3,6],
-        [1,4,7],[2,5,8],
-        [0,4,8],[2,4,6]
-    ]
+function playerCrossStyle(e){
+    state.cp = "X" 
+    state.color = "blue"
+    e.target.style.color = state.color
+    currentPlayer.textContent = state.cp
+    currentPlayer.style.color = "red"
+}
 
-    // function playerCircleStyle(e){
-    //     state.cp = "O" 
-    //     state.color = "red"
-    //     e.target.style.color = state.color
-    //     currentPlayer.textContent = state.cp
-    //     currentPlayer.style.color = "blue"
-    // }
+function checkNull(){
+    const cpPions = [...pionArray]
+    return cpPions.every((el)=>{
+        return el.textContent === "X" || el.textContent === "O"
+    })
+}
 
-    // function playerCrossStyle(e){
-    //     state.cp = "X" 
-    //     state.color = "blue"
-    //     e.target.style.color = state.color
-    //     currentPlayer.textContent = state.cp
-    //     currentPlayer.style.color = "red"
-    // }
-
-    function checkNull(){
-        const cpPions = [...pionArray]
-        return cpPions.every((el)=>{
-            return el.textContent === "X" || el.textContent === "O"
-        })
-    }
-
-    /**
-     * on test tous les tableaux de la combinaison gagnante 
-     * si au moins un éléments est vrai 
-     * on vérifie ensuite chaques éléments du tableau renvoyé précedement 
-     * si tous ses élémens vérifie le test alors le joueur gagne 
-    */
-    function checkWins(){
-        return WINNINGCOMBI.some((combi)=>{
+/**
+ * on test tous les tableaux de la combinaison gagnante 
+ * si au moins un éléments est vrai 
+ * on vérifie ensuite chaques éléments du tableau renvoyé précedement 
+ * si tous ses élémens vérifie le test alors le joueur gagne 
+*/
+function checkWins(){
+    return WINNINGCOMBI.some((combi)=>{
             return combi.every((i) =>{
-                return pionArray[i].textContent === state.cp
-            })
-        })
-    }
-
-    function ResetPlateau() {
-        for (let index = 0 ; index < pionArray.length ; index++) {
-            pionArray[index].textContent = ""
-        }
-        // state.cp = "O"
-        // currentPlayer.textContent = state.cp
-        // state.color = "blue"
-        // currentPlayer.style.color = state.color
-        // console.log(currentPlayer.textContent ,"text du currentPlayer ")
-    }
-
-    function chekWinsOrDraw(){
-
-        if(checkWins()){
-
-            if(state.cp === "O"){
-                state.score_j1 += 1
-                p1.textContent = state.score_j1
-                alert("Player " + state.cp + " Wins")
-                ResetPlateau()
-                state.cp = "O"
-                currentPlayer.textContent = state.cp
-                console.log(state , " victoire joueur O")
-
-            }
-            else if (state.cp === "X"){
-                state.score_j2 += 1
-                p2.textContent = state.score_j2
-                alert("Player " + state.cp + " Wins")
-                ResetPlateau()
-                state.cp = "O"
-                currentPlayer.textContent = state.cp
-                console.log(state , " victoire joueur X")
-            }
-        }
-        else if(checkNull()){
-            state.score_nul += 1
-            nul.textContent = state.score_nul
-            alert("Its Draw")
-            ResetPlateau()
-            state.cp = "O"
-            currentPlayer.textContent = state.cp
-            console.log(state , " debug")
-        }
-    }
-
-    function  Game(e){
-        if(e.target.textContent === ""){
-            console.log(state)
-            e.target.textContent = state.cp
-            currentPlayer.textContent = state.cp
-            chekWinsOrDraw()
-            state.cp === "O" ? state.cp = "X" : state.cp = "O"
-
-        }
-    }
-
-    pionArray.forEach((el) =>{
-        el.addEventListener('click',(e)=>{
-            Game(e)
+                if(state.cp === "O") {
+                    return pionArray[i].textContent === "X"
+                }
+                else if(state.cp === "X") {
+                    return pionArray[i].textContent === "O"
+                }
         })
     })
 }
 
-main()
+function ResetPlateau() {
+    for (let index = 0 ; index < pionArray.length ; index++) {
+        pionArray[index].textContent = ""
+    }
+    state.cp = "O"
+    state.color = "blue"
+    currentPlayer.textContent = state.cp
+    currentPlayer.style.color = state.color
+}
+
+
+
+function restartGame(){
+    window.location.reload()
+}
+
+function chekWinsOrDraw(e){
+
+    if(checkWins()){
+        if(state.cp === "O"){
+            state.score_j2 += 1
+            p2.textContent = state.score_j2
+            // alert("Player X Wins")
+            showPopup(e,"Player "+ playerOne.textContent + " wins")
+            // restartGame()
+        }
+        else if (state.cp === "X"){
+            state.score_j1 += 1
+            p1.textContent = state.score_j1
+            // alert("Player O Wins")
+            showPopup(e,"Player "+ playerTwo.textContent + " wins")
+            // restartGame()
+        }
+    }
+    else if(checkNull()){
+        state.score_nul += 1
+        nul.textContent = state.score_nul
+        showPopup(e, "It's Draw")
+        // restartGame()
+        console.log(state , " debug")
+    }
+
+}
+
+function  Game(e){
+    if(e.target.textContent === ""){
+
+        e.target.textContent = state.cp
+        state.cp === "O" ? playerCrossStyle(e) : playerCircleStyle(e)
+        chekWinsOrDraw(e)
+        currentPlayer.textContent = state.cp
+
+    }
+}
+
+function WhatIsYourName(){
+    playerOne.textContent = prompt("What is first Player Name ?")
+    playerTwo.textContent = prompt("What is second Player Name ?")
+}
+
+function Play(){
+    WhatIsYourName()
+    pionArray.forEach((el) =>{
+        el.addEventListener('click', Game)
+    })
+}
+
+Play()
+

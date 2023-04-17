@@ -206,7 +206,7 @@ input[type=checkbox]{
 /* Styling pour les écrans de petite taille */
 @media only screen and (max-width: 600px) {
     *{
-        font-size: medium;
+        /* font-size: medium; */
     }
 
     label {
@@ -231,6 +231,7 @@ input[type=checkbox]{
         border-radius: 90px;
         transition: 0.3s;
     }
+
 }
 
 /* Styling pour les écrans de taille moyenne */
@@ -241,22 +242,6 @@ input[type=checkbox]{
 /* Styling pour les écrans de grande taille */
 @media only screen and (min-width: 1025px) {
 /* Ajouter des règles de style CSS pour les écrans de grande taille ici */
-}
-
-
-tr{
-    text-align: center;
-    border: 1px solid #000;
-}
-
-i{
-    cursor:  pointer;
-}
-
-.inputer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 
